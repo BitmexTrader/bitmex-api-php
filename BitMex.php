@@ -101,13 +101,13 @@ class BitMex {
     $return = $this->publicQuery($data);
 
     $candles = array();
-
+	  $candleI = 0;
     // Converting
     foreach($return as $item) {
 
       $time = strtotime($item['timestamp']) + $offset; // Unix time stamp
 
-      $candles[$time] = array(
+      $candles[$candleI] = array(
         'timestamp' => date('Y-m-d H:i:s',$time), // Local time human-readable time stamp
         'time' => $time,
         'open' => $item['open'],
@@ -115,12 +115,8 @@ class BitMex {
         'close' => $item['close'],
         'low' => $item['low']
       );
-
+	    $candleI++;
     }
-
-    // Sorting candles from the past to the present
-    ksort($candles);
-
     return $candles;
 
   }
