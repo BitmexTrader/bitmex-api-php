@@ -70,7 +70,7 @@ if($rsi < 13){
 }
 
 
-//set take profit level
+//close position if ROE is over N%
 
 //get current position details
 $positions = $bitmex->getOpenPositions();
